@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'PageController@getindex');
-Route::get('about','PageController@getAbout');
-Route::get('contact','PageController@getContact');
+Route::group(['middleware'=>['web']],function(){
+    Route::get('/', 'PageController@getindex');
+    Route::get('about','PageController@getAbout');
+    Route::get('contact','PageController@getContact');
+    Route::resource('posts','PostController');
+});
